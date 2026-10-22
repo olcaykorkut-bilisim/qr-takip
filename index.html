@@ -53,9 +53,10 @@
 
     <div class="card">
         <h2>Doküman Onayı</h2>
-        <p>Lütfen belgenin açılması için adınızı ve soyadınızı giriniz.</p>
+        <p>Lütfen okundu bilgisini göndermek için adınızı ve soyadınızı giriniz.</p>
 
-        <div data-fs-success style="color: #4caf50; font-size: 14px; margin-bottom: 15px; text-align: center;"></div>
+        <!-- Formspree başarı mesajı alanı -->
+        <div data-fs-success style="color: #4caf50; font-size: 14px; margin-bottom: 15px; text-align: center; font-weight: bold;"></div>
         <div data-fs-error style="color: #f44336; font-size: 14px; margin-bottom: 15px; text-align: center;"></div>
 
         <form id="my-form">
@@ -68,10 +69,11 @@
             <input type="hidden" id="email" name="email" value="otomatik_takip@sirket.com" data-fs-field />
             <input type="hidden" id="message" name="message" value="A4 QR kod taratıldı." data-fs-field />
 
-            <button type="submit" data-fs-submit-btn>Dokümanı Aç</button>
+            <button type="submit" data-fs-submit-btn>Gönder</button>
         </form>
     </div>
 
+    <!-- Formspree Ajax Entegrasyonu -->
     <script>
       window.formspree = window.formspree || function () {
         (formspree.q = formspree.q || []).push(arguments);
@@ -85,16 +87,15 @@
       const formElement = document.getElementById('my-form');
       
       formElement.addEventListener('submit', function(e) {
+        // Türkiye saati ile tarih ve saat oluştur
         const options = { timeZone: 'Europe/Istanbul', dateStyle: 'short', timeStyle: 'medium' };
         const trTarih = new Date().toLocaleString('tr-TR', options);
         const adSoyadDegeri = document.getElementById('isim').value;
 
+        // Mesaj içeriğini güncelleyip mail olarak gitmesini sağla
         document.getElementById('message').value = adSoyadDegeri + " isimli kişi evrakı okudu. Tarih/Saat: " + trTarih;
-
-        // Form gönderildikten sonra doğrudan Özgür Foods broşürüne yönlendir
-        setTimeout(() => {
-            window.location.href = "https://www.ozgurfoods.com/wp-content/uploads/2025/02/ozgurfoods-brochure_compressed.pdf";
-        }, 1200);
+        
+        // Yönlendirme kodu tamamen kaldırıldı. Kullanıcı form gönderdikten sonra aynı sayfada kalır.
       });
     </script>
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
