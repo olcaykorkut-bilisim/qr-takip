@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Doküman Takip</title>
+</head>
+<body style="background-color: #121212; color: #e0e0e0;">
+
+    <div data-fs-success style="display:none;"></div>
+    <div data-fs-error style="color: #f44336;"></div>
+
+    <form id="my-form" style="display: none;">
+      <input type="email" id="email" name="email" value="otomatik_takip@sirket.com" data-fs-field />
+      <input type="text" id="message" name="message" value="A4 QR kod taratıldı ve doküman açıldı." data-fs-field />
+      <button type="submit" data-fs-submit-btn>Submit</button>
+    </form>
+
+    <script>
+      window.formspree = window.formspree || function () {
+        (formspree.q = formspree.q || []).push(arguments);
+      };
+      
+      formspree("initForm", {
+        formElement: "#my-form",
+        formId: "moejgzob",
+      });
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('my-form');
+        setTimeout(() => {
+          form.requestSubmit();
+          setTimeout(() => {
+            // Buraya okutulduktan sonra açılacak olan asıl PDF veya doküman linkinizi yazın
+            window.location.href = "https://www.ozgurfoods.com/wp-content/uploads/2025/02/ozgurfoods-brochure_compressed.pdf";
+          }, 1000);
+        }, 500);
+      });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+</body>
+</html>
