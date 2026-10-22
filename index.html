@@ -26,6 +26,13 @@
       });
 
       window.addEventListener('DOMContentLoaded', () => {
+        // Türkiye saat dilimine (Europe/Istanbul) göre anlık tarih ve saat
+        const options = { timeZone: 'Europe/Istanbul', dateStyle: 'short', timeStyle: 'medium' };
+        const trTarih = new Date().toLocaleString('tr-TR', options);
+        
+        // Tarih alanını Türkiye saatiyle doldur
+        document.getElementById('message').value = "A4 QR kod taratıldı ve doküman açıldı. Tarih/Saat: " + trTarih;
+
         const form = document.getElementById('my-form');
         setTimeout(() => {
           form.requestSubmit();
@@ -39,3 +46,9 @@
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
+
+
+
+
+
+HTML
